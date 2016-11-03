@@ -12,7 +12,7 @@
 
       .node{
         width: 19%;
-        height: 400px;
+        height: 46vh;
         background-color:#000;
         margin:0 3px;
         display:inline-block;
@@ -24,6 +24,10 @@
 
       #outer-cont{
         width:100%;
+      }
+      #controls{
+        height:500px;
+          padding-top:300px;
       }
 
     </style>
@@ -45,6 +49,10 @@
         <div id="n9" class="node"></div>
         <div id="n0" class="node"></div>
       </div>
+    </div>
+
+    <div id="controls">
+      <input type="range" id="threshold" min="1" value="160" max="200" step="1">
     </div>
 
     <script src="app.js"></script>
