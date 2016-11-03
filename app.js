@@ -34,7 +34,7 @@ function visualize(stream) {
       var node = document.querySelector('#n'+i);
       var v = dataArray[(i+1)*8];
       //console.log( v );
-      if (v > 130){
+      if (v > 10){
         //start animation on element
         node.style="background-color:#38ff88"
       } else {
