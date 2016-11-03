@@ -7,13 +7,13 @@
         background-color:#000;
       }
       .cont {
-        margin:9vh 0;
+        margin:9vh 0 8vh 0;
       }
       .node{
-        width: 13.5%;
-        height: 36vh;
+        width: 6.5%;
+        height: 83vh;
         background-color:#000;
-        margin:0 3%;
+        margin:0 1.5%;
         display:inline-block;
       }
 
@@ -22,11 +22,42 @@
       .node > :last-child { margin-right: 0 !important; }
 
       #outer-cont{
-        width:100%;
+        width:90%;
+        margin: 0 5%;
       }
       #controls{
         height:500px;
           padding-top:300px;
+      }
+
+      input[type=range]{
+          -webkit-appearance: none;
+      }
+
+      input[type=range]::-webkit-slider-runnable-track {
+          width: 500px;
+          height: 15px;
+          background: #ddd;
+          border: none;
+          border-radius: 3px;
+      }
+
+      input[type=range]::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          border: none;
+          height: 46px;
+          width: 46px;
+          border-radius: 50%;
+          background: goldenrod;
+          margin-top: -14px;
+      }
+
+      input[type=range]:focus {
+          outline: none;
+      }
+
+      input[type=range]:focus::-webkit-slider-runnable-track {
+          background: #ccc;
       }
 
     </style>
@@ -34,24 +65,21 @@
   <body>
     <div id="outer-cont">
       <div class="cont">
-        <div id="n6" class="node"></div>
-        <div id="n2" class="node"></div>
-        <div id="n4" class="node"></div>
-        <div id="n8" class="node"></div>
-        <div id="n5" class="node"></div>
-
-      </div>
-      <div class="cont">
-        <div id="n1" class="node"></div>
-        <div id="n7" class="node"></div>
-        <div id="n3" class="node"></div>
-        <div id="n9" class="node"></div>
         <div id="n0" class="node"></div>
+        <div id="n1" class="node"></div>
+        <div id="n2" class="node"></div>
+        <div id="n3" class="node"></div>
+        <div id="n4" class="node"></div>
+        <div id="n5" class="node"></div>
+        <div id="n6" class="node"></div>
+        <div id="n7" class="node"></div>
+        <div id="n8" class="node"></div>
+        <div id="n9" class="node"></div>
       </div>
     </div>
 
     <div id="controls">
-      <input type="range" id="threshold" min="1" value="160" max="200" step="1">
+      <input type="range" id="threshold" min="1" value="160" max="300" step="1">
     </div>
 
     <script src="app.js"></script>
