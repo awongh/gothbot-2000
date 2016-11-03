@@ -1,8 +1,15 @@
 var start = false;
 var startButton, audioCtx, thresholdInput;
 var threshold = 160;
-//var currentColor = 0;
-//var colors = [];
+var currentColor = 0;
+var colors = [
+  "00ff14",
+  "00a1ff",
+  "f00",
+  "fbff00",
+  "ff9900",
+  "ff00f7"
+];
 
 /////////
 
@@ -30,11 +37,9 @@ function visualize(stream) {
       var node = document.querySelector('#n'+i);
       var x = (i+1) * 8;
       var v = dataArray[x];
-      //console.log( v );
-      alert(v );
       if (v > threshold){
         //start animation on element
-        node.style="background-color:#38ff88"
+        node.style="background-color:#"+colors[currentColor];
       } else {
 
         node.style="background-color:#000"
@@ -54,16 +59,21 @@ function visualize(stream) {
 /////////
 
 window.onload = function(){
-  //startButton = document.querySelector('#outer-cont');
+  startButton = document.querySelector('#outer-cont');
 
   thresholdInput = document.querySelector('#threshold');
   thresholdInput.onchange = function(event){
     threshold = event.target.value;
   }
 
-  //startButton.onclick = function(){
-  //  currentColor++;
-  //};
+  startButton.onclick = function(){
+    if( currentColor == colors.length -1 ){
+
+      currentColor = 0;
+    }else{
+      currentColor++;
+    }
+  };
 
   // visualiser setup - create web audio api context
   audioCtx = new (window.AudioContext)();
