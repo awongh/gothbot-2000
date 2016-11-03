@@ -1,21 +1,8 @@
 var start = false;
-var startButton, display;
-
+var startButton, audioCtx;
 
 /////////
 
-
-// visualiser setup - create web audio api context
-var audioCtx = new (window.AudioContext || webkitAudioContext)();
-
-//main block for doing the audio recording
-var onSuccess = function(stream) {
-  visualize(stream);
-}
-
-var onError = function(err) {
-  console.log('The following error occured: ' + err);
-}
 
 function visualize(stream) {
   var source = audioCtx.createMediaStreamSource(stream);
@@ -69,23 +56,40 @@ function visualize(stream) {
 /////////
 
 window.onload = function(){
-  startButton = document.querySelector('#start');
+  startButton = document.querySelector('#outer-cont');
+
+  startButton.onclick = function(){
+
+
+    // visualiser setup - create web audio api context
+    audioCtx = new (window.AudioContext || webkitAudioContext)();
+
+    //main block for doing the audio recording
+    var onSuccess = function(stream) {
+      visualize(stream);
+    }
+
+    var onError = function(err) {
+      console.log('The following error occured: ' + err);
+    }
+
+    navigator.getUserMedia = ( navigator.getUserMedia ||
+                           navigator.webkitGetUserMedia ||
+                           navigator.mozGetUserMedia ||
+                           navigator.msGetUserMedia);
+
+    if (navigator.getUserMedia) {
+      console.log('getUserMedia supported.');
+
+      var constraints = { audio: true };
+      var chunks = [];
+
+      navigator.getUserMedia(constraints, onSuccess, onError);
+    } else {
+       console.log('getUserMedia not supported on your browser!');
+    }
+
+
+
+  };
 };
-
-navigator.getUserMedia = ( navigator.getUserMedia ||
-                       navigator.webkitGetUserMedia ||
-                       navigator.mozGetUserMedia ||
-                       navigator.msGetUserMedia);
-
-if (navigator.getUserMedia) {
-  console.log('getUserMedia supported.');
-
-  var constraints = { audio: true };
-  var chunks = [];
-
-  navigator.getUserMedia(constraints, onSuccess, onError);
-} else {
-   console.log('getUserMedia not supported on your browser!');
-}
-
-
